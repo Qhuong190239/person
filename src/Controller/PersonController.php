@@ -19,7 +19,7 @@ class PersonController extends AbstractController
 
     }
 
-    #[Route('/person/view/{id}', name: 'person_detail')]
+    #[Route('/person/detail/{id}', name: 'person_detail')]
     public function personDetail ($id) {
         $person = $this->getDoctrine()->getRepository(Person::class)->find($id);
         return $this->render("person/detail.html.twig",
