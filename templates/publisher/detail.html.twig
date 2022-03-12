@@ -1,0 +1,49 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+<div class="container">
+    <table class="table table-bordered text-center"
+        <tr>
+            <th>Name</th>
+            <th>Image</th>
+            <th>Headquarters</th>
+            <th>Email</th>
+            <th>Year</th>
+            <th>Games</th>
+            {% if is_granted("ROLE_ADMIN") %}
+            <th>Menu</th>                
+            {% endif %}
+
+        </tr>
+            <tr>
+                <td>{{ publisher.name }}</td>
+                <td>
+                <img src="{{publisher.image}}" width="100" height="100">
+                </td>
+                <td>{{ publisher.headquarters }}</td>
+                <td>{{ publisher.email }}</td>
+                <td>{{ publisher.year | date ('d/m/Y') }}</td>
+                <td>
+                    {% for p in publisher.people %}
+                        <a href="{{ path ('game_detail', {'id': p.id })}}">
+                            {{ p.name }}                             
+                        </a>
+                        <br>
+                    {% endfor %}
+                </td>
+                {% if is_granted("ROLE_ADMIN") %}
+                <td>
+                    <a class="btn btn-outline-primary" href="{{ path ('publisher_edit', {'id': publisher.id })}}">
+                        Edit
+                    </a>
+                    <a class="btn btn-outline-danger" href="{{ path ('publisher_delete', {'id': publisher.id })}}">
+                        Delete
+                    </a>
+                </td>                    
+                {% endif %}
+
+            </tr>
+    </table>
+</div>
+
+{% endblock %}

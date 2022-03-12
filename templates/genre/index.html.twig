@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="container">
+{% if is_granted("ROLE_ADMIN") %}
+    <div class="text text-black text-capitalize">
+        <a href="{{ path("genre_add")}}">
+        <img src="{{ asset("images/add-button.png")}}" width="100" height="100">
+        </a>
+    </div>    
+{% endif %}
+
+    <table class="table table-bordered text-center">
+        <thead>
+            <tr>
+                <th>Genre ID</th>
+                <th>Genre Name</th>
+                <th>Genre Description</th>
+                <th>Menu</th>
+            </tr>    
+        </thead>
+        <tbody>
+        {% for c in genre %}
+            <tr>
+                <td>{{ c.id }}</td>
+                <td>{{ c.name }}</td>
+                <td>{{ c.description }}</td>
+                <td>
+                    <a class="btn btn-outline-dark" href="{{ path ("genre_detail", {'id': c.id }) }}">
+                        Detail
+                    </a>
+                    {% if is_granted("ROLE_ADMIN") %}
+                    <a class="btn btn-outline-primary" href="{{ path ("genre_edit", {'id': c.id})}}">
+                        Edit
+                    </a>
+                    <a class="btn btn-outline-danger" href="{{ path ("genre_delete", {'id': c.id }) }}">
+                        Delete
+                    </a>                        
+                    {% endif %}
+
+                </td>
+            </tr>            
+        {% endfor %}
+
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}

@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="container">
+    <table class="table table-bordered text-center">
+        <thead>
+            <tr>
+                <th>Genre Name</th>
+                <th>Genre Description</th>
+                {% if is_granted("ROLE_ADMIN") %}
+                   <th>Menu</th>                    
+                {% endif %}
+
+            </tr>    
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{ genre.name }}</td>
+                <td>{{ genre.description }} </td>
+                {% if is_granted("ROLE_ADMIN") %}
+                <td>
+                    <a class="btn btn-outline-primary" 
+                    href="{{ path ("genre_edit", {'id' : genre.id })}}">
+                        Edit
+                    </a>
+                    <a class="btn btn-outline-danger" 
+                    href="{{ path ("genre_delete", {'id': genre.id }) }}">
+                        Delete
+                    </a>
+                </td>                    
+                {% endif %}
+
+            </tr>            
+
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}
