@@ -15,6 +15,22 @@
         {% endblock %}
     </head>
     <body>
+        {% block nav %}
+            <ul class="nav nav-tabs">
+            <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#">Active</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{path("person_index")}}">Person</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{path("job_index")}}">Job</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{path("car_index")}}">Car</a>
+            </li>
+            </ul>
+        {% endblock %}
         {% block body %}{% endblock %}
     </body>
 </html>

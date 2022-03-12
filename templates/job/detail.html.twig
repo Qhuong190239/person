@@ -1,0 +1,39 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+<div class="container">
+    <table class="table table-bordered text-center"
+        <tr>
+            <th>Name</th>
+            <th>Company</th>
+            <th>Position</th>
+            <th>Salary</th>
+            <th>Employee</th>
+            <th>Menu</th>
+        </tr>
+            <tr>
+                <td>{{ job.name }}</td>
+                <td>{{ job.company }}</td>
+                <td>{{ job.position }}</td>
+                <td>{{ job.salary }} $ </td>
+                <td>
+                    {% for p in job.people %}
+                        <a href="{{ path ('person_detail', {'id': p.id })}}">
+                            {{ p.name }}                             
+                        </a>
+                        <br>
+                    {% endfor %}
+                </td>
+                <td>
+                    <a class="btn btn-outline-primary" href="{{ path ('job_edit', {'id': job.id })}}">
+                        Edit
+                    </a>
+                    <a class="btn btn-outline-danger" href="{{ path ('job_delete', {'id': job.id })}}">
+                        Delete
+                    </a>
+                </td>
+            </tr>
+    </table>
+</div>
+
+{% endblock %}

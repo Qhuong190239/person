@@ -5,7 +5,6 @@ namespace App\DataFixtures;
 use App\Entity\Job;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
-use Twig\Node\SetNode;
 
 class JobFixtures extends Fixture
 {

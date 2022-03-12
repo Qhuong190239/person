@@ -2,11 +2,17 @@
 
 {% block body %}
 <div class="container">
+    <div class="text text-black text-capitalize">
+        <a href="{{ path("person_add")}}">
+        <img src="{{ asset("images/add-button.png")}}" width="100" height="100">
+        </a>
+    </div>
     <table class="table table-bordered text-center">
         <thead>
             <tr>
                 <th>Person ID</th>
                 <th>Person Name</th>
+                <th>Person Code</th>
                 <th>Menu</th>
             </tr>    
         </thead>
@@ -15,10 +21,17 @@
             <tr>
                 <td>{{ p.id }}</td>
                 <td>{{ p.name }}</td>
+                <td>{{ p.detail.code }}</td>
                 <td>
-                    <a class="btn btn-outline-dark" href="http://">Detail</a>
-                    <a class="btn btn-outline-primary" href="">Edit</a>
-                    <a class="btn btn-outline-danger" href="{{ path ("person_delete", {'id': p.id }) }}">Delete</a>
+                    <a class="btn btn-outline-dark" href="{{ path ("person_detail", {'id' : p.id })}}">
+                        Detail
+                    </a>
+                    <a class="btn btn-outline-primary" href="{{ path ("person_edit", {'id': p.id})}}">
+                        Edit
+                    </a>
+                    <a class="btn btn-outline-danger" href="{{ path ("person_delete", {'id': p.id }) }}">
+                        Delete
+                    </a>
                 </td>
             </tr>            
         {% endfor %}

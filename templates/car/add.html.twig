@@ -1,0 +1,9 @@
+{% form_theme carForm 'bootstrap_5_layout.html.twig' %}
+{% extends "base.html.twig" %}
+
+{% block body %}
+<div class="container">
+    <h3 class="text-primary text-uppercase text-center">Add new Car</h3>
+    {{ form (carForm) }}
+</div>
+{% endblock %}   
