@@ -1,0 +1,9 @@
+{% form_theme genreForm 'bootstrap_5_layout.html.twig' %}
+{% extends "base.html.twig" %}
+
+{% block body %}
+<div class="container">
+    <h3 class="text-primary text-uppercase text-center">Edit Genre</h3>
+    {{ form (genreForm) }}
+</div>
+{% endblock %}   

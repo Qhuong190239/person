@@ -2,30 +2,30 @@
 
 namespace App\Repository;
 
-use App\Entity\PersonDetail;
+use App\Entity\Genre;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\OptimisticLockException;
 use Doctrine\ORM\ORMException;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @method PersonDetail|null find($id, $lockMode = null, $lockVersion = null)
- * @method PersonDetail|null findOneBy(array $criteria, array $orderBy = null)
- * @method PersonDetail[]    findAll()
- * @method PersonDetail[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method Genre|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Genre|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Genre[]    findAll()
+ * @method Genre[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class PersonDetailRepository extends ServiceEntityRepository
+class GenreRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, PersonDetail::class);
+        parent::__construct($registry, Genre::class);
     }
 
     /**
      * @throws ORMException
      * @throws OptimisticLockException
      */
-    public function add(PersonDetail $entity, bool $flush = true): void
+    public function add(Genre $entity, bool $flush = true): void
     {
         $this->_em->persist($entity);
         if ($flush) {
@@ -37,7 +37,7 @@ class PersonDetailRepository extends ServiceEntityRepository
      * @throws ORMException
      * @throws OptimisticLockException
      */
-    public function remove(PersonDetail $entity, bool $flush = true): void
+    public function remove(Genre $entity, bool $flush = true): void
     {
         $this->_em->remove($entity);
         if ($flush) {
@@ -46,15 +46,15 @@ class PersonDetailRepository extends ServiceEntityRepository
     }
 
     // /**
-    //  * @return PersonDetail[] Returns an array of PersonDetail objects
+    //  * @return Genre[] Returns an array of Genre objects
     //  */
     /*
     public function findByExampleField($value)
     {
-        return $this->createQueryBuilder('p')
-            ->andWhere('p.exampleField = :val')
+        return $this->createQueryBuilder('c')
+            ->andWhere('c.exampleField = :val')
             ->setParameter('val', $value)
-            ->orderBy('p.id', 'ASC')
+            ->orderBy('c.id', 'ASC')
             ->setMaxResults(10)
             ->getQuery()
             ->getResult()
@@ -63,10 +63,10 @@ class PersonDetailRepository extends ServiceEntityRepository
     */
 
     /*
-    public function findOneBySomeField($value): ?PersonDetail
+    public function findOneBySomeField($value): ?Genre
     {
-        return $this->createQueryBuilder('p')
-            ->andWhere('p.exampleField = :val')
+        return $this->createQueryBuilder('c')
+            ->andWhere('c.exampleField = :val')
             ->setParameter('val', $value)
             ->getQuery()
             ->getOneOrNullResult()

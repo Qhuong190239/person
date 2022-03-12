@@ -2,30 +2,30 @@
 
 namespace App\Repository;
 
-use App\Entity\Job;
+use App\Entity\GameDetail;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\OptimisticLockException;
 use Doctrine\ORM\ORMException;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @method Job|null find($id, $lockMode = null, $lockVersion = null)
- * @method Job|null findOneBy(array $criteria, array $orderBy = null)
- * @method Job[]    findAll()
- * @method Job[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method GameDetail|null find($id, $lockMode = null, $lockVersion = null)
+ * @method GameDetail|null findOneBy(array $criteria, array $orderBy = null)
+ * @method GameDetail[]    findAll()
+ * @method GameDetail[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class JobRepository extends ServiceEntityRepository
+class GameDetailRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, Job::class);
+        parent::__construct($registry, GameDetail::class);
     }
 
     /**
      * @throws ORMException
      * @throws OptimisticLockException
      */
-    public function add(Job $entity, bool $flush = true): void
+    public function add(GameDetail $entity, bool $flush = true): void
     {
         $this->_em->persist($entity);
         if ($flush) {
@@ -37,7 +37,7 @@ class JobRepository extends ServiceEntityRepository
      * @throws ORMException
      * @throws OptimisticLockException
      */
-    public function remove(Job $entity, bool $flush = true): void
+    public function remove(GameDetail $entity, bool $flush = true): void
     {
         $this->_em->remove($entity);
         if ($flush) {
@@ -46,15 +46,15 @@ class JobRepository extends ServiceEntityRepository
     }
 
     // /**
-    //  * @return Job[] Returns an array of Job objects
+    //  * @return GameDetail[] Returns an array of GameDetail objects
     //  */
     /*
     public function findByExampleField($value)
     {
-        return $this->createQueryBuilder('j')
-            ->andWhere('j.exampleField = :val')
+        return $this->createQueryBuilder('p')
+            ->andWhere('p.exampleField = :val')
             ->setParameter('val', $value)
-            ->orderBy('j.id', 'ASC')
+            ->orderBy('p.id', 'ASC')
             ->setMaxResults(10)
             ->getQuery()
             ->getResult()
@@ -63,10 +63,10 @@ class JobRepository extends ServiceEntityRepository
     */
 
     /*
-    public function findOneBySomeField($value): ?Job
+    public function findOneBySomeField($value): ?GameDetail
     {
-        return $this->createQueryBuilder('j')
-            ->andWhere('j.exampleField = :val')
+        return $this->createQueryBuilder('p')
+            ->andWhere('p.exampleField = :val')
             ->setParameter('val', $value)
             ->getQuery()
             ->getOneOrNullResult()

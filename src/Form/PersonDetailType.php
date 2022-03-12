@@ -10,6 +10,10 @@ use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
+<<<<<<< HEAD
+=======
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+>>>>>>> d0b3d43489e35b3beb64207560b37cc71100fdea
 
 class PersonDetailType extends AbstractType
 {

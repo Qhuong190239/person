@@ -2,30 +2,30 @@
 
 namespace App\Repository;
 
-use App\Entity\Car;
+use App\Entity\Game;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\OptimisticLockException;
 use Doctrine\ORM\ORMException;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @method Car|null find($id, $lockMode = null, $lockVersion = null)
- * @method Car|null findOneBy(array $criteria, array $orderBy = null)
- * @method Car[]    findAll()
- * @method Car[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method Game|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Game|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Game[]    findAll()
+ * @method Game[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class CarRepository extends ServiceEntityRepository
+class GameRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, Car::class);
+        parent::__construct($registry, Game::class);
     }
 
     /**
      * @throws ORMException
      * @throws OptimisticLockException
      */
-    public function add(Car $entity, bool $flush = true): void
+    public function add(Game $entity, bool $flush = true): void
     {
         $this->_em->persist($entity);
         if ($flush) {
@@ -37,7 +37,7 @@ class CarRepository extends ServiceEntityRepository
      * @throws ORMException
      * @throws OptimisticLockException
      */
-    public function remove(Car $entity, bool $flush = true): void
+    public function remove(Game $entity, bool $flush = true): void
     {
         $this->_em->remove($entity);
         if ($flush) {
@@ -46,15 +46,15 @@ class CarRepository extends ServiceEntityRepository
     }
 
     // /**
-    //  * @return Car[] Returns an array of Car objects
+    //  * @return Game[] Returns an array of Game objects
     //  */
     /*
     public function findByExampleField($value)
     {
-        return $this->createQueryBuilder('c')
-            ->andWhere('c.exampleField = :val')
+        return $this->createQueryBuilder('p')
+            ->andWhere('p.exampleField = :val')
             ->setParameter('val', $value)
-            ->orderBy('c.id', 'ASC')
+            ->orderBy('p.id', 'ASC')
             ->setMaxResults(10)
             ->getQuery()
             ->getResult()
@@ -63,10 +63,10 @@ class CarRepository extends ServiceEntityRepository
     */
 
     /*
-    public function findOneBySomeField($value): ?Car
+    public function findOneBySomeField($value): ?Game
     {
-        return $this->createQueryBuilder('c')
-            ->andWhere('c.exampleField = :val')
+        return $this->createQueryBuilder('p')
+            ->andWhere('p.exampleField = :val')
             ->setParameter('val', $value)
             ->getQuery()
             ->getOneOrNullResult()

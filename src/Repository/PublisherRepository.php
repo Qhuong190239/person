@@ -2,30 +2,31 @@
 
 namespace App\Repository;
 
-use App\Entity\Person;
+use App\Entity\Publisher;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\OptimisticLockException;
 use Doctrine\ORM\ORMException;
 use Doctrine\Persistence\ManagerRegistry;
 
+
 /**
- * @method Person|null find($id, $lockMode = null, $lockVersion = null)
- * @method Person|null findOneBy(array $criteria, array $orderBy = null)
- * @method Person[]    findAll()
- * @method Person[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method Publisher|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Publisher|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Publisher[]    findAll()
+ * @method Publisher[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class PersonRepository extends ServiceEntityRepository
+class PublisherRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, Person::class);
+        parent::__construct($registry, Publisher::class);
     }
 
     /**
      * @throws ORMException
      * @throws OptimisticLockException
      */
-    public function add(Person $entity, bool $flush = true): void
+    public function add(Publisher $entity, bool $flush = true): void
     {
         $this->_em->persist($entity);
         if ($flush) {
@@ -37,7 +38,7 @@ class PersonRepository extends ServiceEntityRepository
      * @throws ORMException
      * @throws OptimisticLockException
      */
-    public function remove(Person $entity, bool $flush = true): void
+    public function remove(Publisher $entity, bool $flush = true): void
     {
         $this->_em->remove($entity);
         if ($flush) {
@@ -46,15 +47,15 @@ class PersonRepository extends ServiceEntityRepository
     }
 
     // /**
-    //  * @return Person[] Returns an array of Person objects
+    //  * @return Publisher[] Returns an array of Publisher objects
     //  */
     /*
     public function findByExampleField($value)
     {
-        return $this->createQueryBuilder('p')
-            ->andWhere('p.exampleField = :val')
+        return $this->createQueryBuilder('j')
+            ->andWhere('j.exampleField = :val')
             ->setParameter('val', $value)
-            ->orderBy('p.id', 'ASC')
+            ->orderBy('j.id', 'ASC')
             ->setMaxResults(10)
             ->getQuery()
             ->getResult()
@@ -63,10 +64,10 @@ class PersonRepository extends ServiceEntityRepository
     */
 
     /*
-    public function findOneBySomeField($value): ?Person
+    public function findOneBySomeField($value): ?Publisher
     {
-        return $this->createQueryBuilder('p')
-            ->andWhere('p.exampleField = :val')
+        return $this->createQueryBuilder('j')
+            ->andWhere('j.exampleField = :val')
             ->setParameter('val', $value)
             ->getQuery()
             ->getOneOrNullResult()

@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="container">
+{% if is_granted("ROLE_ADMIN") %}
+    <div class="text text-black text-capitalize">
+        <a href="{{ path("game_add")}}">
+        <img src="{{ asset("images/add-button.png")}}" width="100" height="100">
+        </a>
+    </div>    
+{% endif %}
+
+    <table class="table table-bordered text-center">
+        <thead>
+            <tr>
+                <th>Game ID</th>
+                <th>Game Name</th>
+                <th>Game Cover</th>
+                <th>Menu</th>
+            </tr>    
+        </thead>
+        <tbody>
+        {% for p in game %}
+            <tr>
+                <td>{{ p.id }}</td>
+                <td>{{ p.name }}</td>
+                <td>
+                    <a href="{{ path('game_detail', {'id' : p.id })}}">
+                        <img src="{{ p.image }}" width="100" height="100">
+                    </a>
+                </td>
+                <td>
+                    <a class="btn btn-outline-dark" href="{{ path ("game_detail", {'id' : p.id })}}">
+                        Detail
+                    </a>
+                    {% if is_granted("ROLE_ADMIN") %}
+                   <a class="btn btn-outline-primary" href="{{ path ("game_edit", {'id': p.id})}}">
+                        Edit
+                    </a>
+                    <a class="btn btn-outline-danger" href="{{ path ("game_delete", {'id': p.id }) }}">
+                        Delete
+                    </a>                        
+                    {% endif %}
+ 
+                </td>
+            </tr>            
+        {% endfor %}
+
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}

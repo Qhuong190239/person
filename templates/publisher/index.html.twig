@@ -1,0 +1,47 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+<div class="container">
+{% if is_granted("ROLE_ADMIN") %}
+    <div class="text text-black text-capitalize">
+        <a href="{{ path("publisher_add")}}">
+        <img src="{{ asset("images/add-button.png")}}" width="100" height="100">
+        </a>
+    </div>    
+{% endif %}
+
+    <table class="table table-bordered text-center"
+        <tr>
+            <th>Publisher ID</th>
+            <th>Publisher Name</th>
+            <th>Publisher Image</th>
+            <th>Menu</th>
+        </tr>
+        {% for j in publisher %}
+            <tr>
+                <td>{{ j.id }}</td>
+                <td>{{ j.name }}</td>
+                <td>
+                    <a href="{{ path('publisher_detail', {'id':j.id})}}"></a>
+                    <img src="{{ j.image }}" width="100" height="100">
+                </td>
+                <td>
+                    <a class="btn btn-outline-dark" href="{{ path ('publisher_detail', {'id': j.id })}}">
+                        Detail
+                    </a>
+                    {% if is_granted("ROLE_ADMIN") %}
+                    <a class="btn btn-outline-primary" href="{{ path ('publisher_edit', {'id': j.id })}}">
+                        Edit
+                    </a>
+                    <a class="btn btn-outline-danger" href="{{ path ('publisher_delete', {'id': j.id })}}">
+                        Delete
+                    </a>                        
+                    {% endif %}
+
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+</div>
+
+{% endblock %}
