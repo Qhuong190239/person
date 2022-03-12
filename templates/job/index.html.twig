@@ -1,0 +1,36 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+<div class="container">
+    <div class="text text-black text-capitalize">
+        <a href="{{ path("job_add")}}">
+        <img src="{{ asset("images/add-button.png")}}" width="100" height="100">
+        </a>
+    </div>
+    <table class="table table-bordered text-center"
+        <tr>
+            <th>Job ID</th>
+            <th>Job Name</th>
+            <th>Menu</th>
+        </tr>
+        {% for j in job %}
+            <tr>
+                <td>{{ j.id }}</td>
+                <td>{{ j.name }}</td>
+                <td>
+                    <a class="btn btn-outline-dark" href="{{ path ('job_detail', {'id': j.id })}}">
+                        Detail
+                    </a>
+                    <a class="btn btn-outline-primary" href="{{ path ('job_edit', {'id': j.id })}}">
+                        Edit
+                    </a>
+                    <a class="btn btn-outline-danger" href="{{ path ('job_delete', {'id': j.id })}}">
+                        Delete
+                    </a>
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+</div>
+
+{% endblock %}
