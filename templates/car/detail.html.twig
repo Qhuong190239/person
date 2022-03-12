@@ -5,30 +5,40 @@
     <table class="table table-bordered text-center">
         <thead>
             <tr>
-                <th>Car ID</th>
                 <th>Car Name</th>
                 <th>Car Brand</th>
                 <th>Car Model</th>
                 <th>Car Price</th>
+                <th>Car Plate</th>
                 <th>Car Owner</th>
                 <th>Menu</th>
             </tr>    
         </thead>
         <tbody>
             <tr>
-                <td>{{ car.id }}</td>
                 <td>{{ car.name }}</td>
                 <td>{{ car.brand }}</td>
                 <td>{{ car.model }}</td>
-                <td>{{ car.price }}</td>
+                <td>{{ car.price }} $</td>
+                <td>{{ car.plate }}</td>
                 <td>
+                {% if car.person != null %}
                     <a href="{{ path ("person_detail", {'id' : car.person.id })}}">
                         {{ car.person.name }}
-                    </a>
+                    </a>       
+                {% else %}
+                    N/A         
+                {% endif %}
                 </td>
                 <td>
-                    <a class="btn btn-outline-primary" href="">Edit</a>
-                    <a class="btn btn-outline-danger" href="{{ path ("car_delete", {'id': car.id }) }}">Delete</a>
+                    <a class="btn btn-outline-primary" 
+                    href="{{ path ("car_edit", {'id' : car.id })}}">
+                        Edit
+                    </a>
+                    <a class="btn btn-outline-danger" 
+                    href="{{ path ("car_delete", {'id': car.id }) }}">
+                        Delete
+                    </a>
                 </td>
             </tr>            
 

@@ -1,0 +1,73 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="container">
+    <table class="table table-bordered text-center">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th></th>
+                <th>Nationality</th>
+                <th>Address</th>
+                <th>Mobile</th>
+                <th>Birthday</th>
+                <th>Car</th>
+                <th>Job</th>
+                <th>Menu</th>
+            </tr>    
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{ person.name }}</td>
+                <td>
+                    {% if person.detail != null %}
+                        {{ person.detail.code }}
+                    {% endif %}
+                </td>
+                <td>
+                    {% if person.detail != null %}
+                        {{ person.detail.nationality }}
+                    {% endif %}
+                </td>
+                <td>
+                    {% if person.detail != null %}
+                        {{ person.detail.address}}
+                    {% endif %}    
+                </td>
+                <td>
+                    {% if person.detail != null %}
+                    {{ person.detail.mobile}}
+                    {% endif %} 
+                </td>
+                <td>
+                    {% if person.detail != null %}
+                    {{ person.detail.birthday | date ('d/m/Y')}}
+                    {% endif %} 
+                </td>
+                <td>
+                    {% for c in person.car %}
+                        <a href="{{ path ('car_detail', {'id': c.id })}}">
+                            {{ c.name }}
+                        </a>
+                        <br>
+                    {% endfor %}
+                </td>
+                <td>
+                    {% for j in person.job %}
+                        <a href="{{ path ('job_detail', {'id': j.id })}}">
+                            {{ j.name }}
+                        </a>
+                        <br>
+                    {% endfor %}
+                </td>
+                <td>
+                    <a class="btn btn-outline-primary" href="">Edit</a>
+                    <a class="btn btn-outline-danger" href="{{ path ("person_delete", {'id': person.id }) }}">Delete</a>
+                </td>
+            </tr>            
+
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}

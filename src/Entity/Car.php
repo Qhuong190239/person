@@ -2,8 +2,9 @@
 
 namespace App\Entity;
 
-use App\Repository\CarRepository;
+use App\Entity\Person;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\CarRepository;
 
 #[ORM\Entity(repositoryClass: CarRepository::class)]
 class Car
@@ -27,6 +28,9 @@ class Car
 
     #[ORM\ManyToOne(targetEntity: Person::class, inversedBy: 'car')]
     private $person;
+
+    #[ORM\Column(type: 'string', length: 10)]
+    private $plate;
 
     public function getId(): ?int
     {
@@ -89,6 +93,18 @@ class Car
     public function setPerson(?Person $person): self
     {
         $this->person = $person;
+
+        return $this;
+    }
+
+    public function getPlate(): ?string
+    {
+        return $this->plate;
+    }
+
+    public function setPlate(string $plate): self
+    {
+        $this->plate = $plate;
 
         return $this;
     }

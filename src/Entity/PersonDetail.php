@@ -2,8 +2,9 @@
 
 namespace App\Entity;
 
-use App\Repository\PersonDetailRepository;
+use App\Entity\Person;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\PersonDetailRepository;
 
 #[ORM\Entity(repositoryClass: PersonDetailRepository::class)]
 class PersonDetail
@@ -27,6 +28,9 @@ class PersonDetail
 
     #[ORM\OneToOne(mappedBy: 'detail', targetEntity: Person::class, cascade: ['persist', 'remove'])]
     private $person;
+
+    #[ORM\Column(type: 'string', length: 14)]
+    private $code;
 
     public function getId(): ?int
     {
@@ -99,6 +103,18 @@ class PersonDetail
         }
 
         $this->person = $person;
+
+        return $this;
+    }
+
+    public function getCode(): ?string
+    {
+        return $this->code;
+    }
+
+    public function setCode(string $code): self
+    {
+        $this->code = $code;
 
         return $this;
     }
